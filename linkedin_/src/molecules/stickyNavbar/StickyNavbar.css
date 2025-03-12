@@ -1,0 +1,44 @@
+.sticky-navbar{
+    position: fixed;
+    padding:2px 2px;
+   
+    width:150px;
+    display: flex;
+    justify-content: center;
+    height:500px;
+    background-color: white;
+   
+    margin:10px 10px;
+    top:52px;
+    border-radius:10px;
+   
+  }
+  .sticky-navbar a{
+    text-decoration: none;
+    color:#00000099;
+  }
+  
+  .sticky-navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .sticky-navbar ul li {
+    margin: 10px 0;
+    width:100%;
+    padding:10px 10px;
+    height:30px;
+  }
+  .sticky-navbar ul li a {
+    text-decoration: none;
+    
+    font-size: 18px;
+  }
+
+  .active-link li a {
+    color:#0b65c2;
+    font-weight: bold;
+    font-size:30px;
+    
+   }
