@@ -1,7 +1,7 @@
 import { useState } from "react";
 import UserData from "../organisms/UserData";
 import { useDispatch } from "react-redux";
-import { dataAdded, dataUpdated } from "../dataSlice";
+import { dataAdded, dataUpdated } from "../redux/features/data";
 export function useUserData() {
     const [editingItem, setEditingItem] = useState(null);
     const [userData, setUserData] = useState(UserData);
@@ -17,30 +17,6 @@ export function useUserData() {
         { title: "Activity", type: "activity", data:userData.activity,headerConfig:userData.activity.headerConfig},
     ];
 
-    // function updateProfile(data) {
-    //     setUserData((prevData) => ({
-    //         ...prevData,
-    //         profile: data,
-    //     }));
-    // }
-
-    // function updateList(type, data) {
-    //     setUserData((prevData) => ({
-    //         ...prevData,
-    //         [type]: prevData[type].map((item) =>
-    //             item.id === data.id ? data : item
-    //         ),
-    //     }));
-    // }
-
-    // function addItem(type, data) {
-       
-    //     setUserData((prevData) => ({
-    //         ...prevData,
-    //         [type]: [...prevData[type], data],
-    //     }));
-    // }
-
     function handleInfoDelete(type, data) {
         setUserData((prevData) => ({
             ...prevData,
@@ -48,19 +24,17 @@ export function useUserData() {
         }));
         handleEditItem(null);
     }
-
     function handleFormSubmit(type, data) {
         if (type === "profile") {
             dispatch(dataUpdated({type,item:data}));
         } else if (editingItem) {
            
-         
             dispatch(dataUpdated({type,item:data}));
-            // updateList(type, data);
+           
         } else {
            
             dispatch(dataAdded({type,item:data}));
-            // addItem(type, data);
+           
         }
 
         handleEditItem(null);

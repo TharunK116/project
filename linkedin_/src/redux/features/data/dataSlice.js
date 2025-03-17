@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import UserData from './organisms/UserData';
+import UserData from '../../../organisms/UserData';
 
 const initialState = { 
-    data: UserData  // Ensure UserData has a valid structure
+    data: UserData  
 };
 
 const dataSlice = createSlice({
@@ -11,11 +11,9 @@ const dataSlice = createSlice({
     reducers: {
         dataAdded: (state, action) => {
             const { type, item } = action.payload;
-            if (state.data[type]) {
+           
                 state.data[type].push(item);
-            } else {
-                console.error(`Invalid type: ${type}`);
-            }
+        
         },
         dataUpdated: (state, action) => {
             const { type, item } = action.payload;
@@ -24,7 +22,7 @@ const dataSlice = createSlice({
              state.data[type]=item;
              return ;
            }
-           
+
             state.data[type] = state.data[type].map(info => 
                 info.id === item.id ? item : info
             ); 
