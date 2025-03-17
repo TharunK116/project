@@ -4,7 +4,7 @@ import fieldInfo from "../../utils/Constants/fields";
 import { useValidation } from "../../hooks/useValidation";
 import { useFormData } from "../../hooks/useFormData";
 import { getSection } from "../../utils/sectionUtils";
-import { createNewData } from "../../utils/addIdUtils";
+import { createNewData } from "../../utils/createNewData";
 import { useModalContext } from "../sectionContainer/SectionContainer";
 
 function Modal(props) {

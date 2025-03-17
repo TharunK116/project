@@ -4,16 +4,15 @@ import './Interests.css'
 import Button from "../../atoms/buttton";
 import HeaderCard from '../headerCard'
 import Icon from "../../atoms/icon";
-function Interests({title,info}) {
-   const CONTENT=info;
-    let contentd = [];
+
+function Interests({title,sectionContent,headerConfig}) {
+   
     const [specific, setspecific] = useState(null);
     const[follow,setfollow]=useState('Follow');
     function handleType(id) {
         setspecific(id);
     }
     function handleFollow(){
-       
         setfollow((prev)=>{
             if(prev==="Follow"){
                 return 'Following';
@@ -21,25 +20,20 @@ function Interests({title,info}) {
             return 'Follow';
         })
     }
-
-
-    if (specific != null) {
-        const content = CONTENT.find((item) => item.type === specific);
-        contentd = content.items;
-    }
-
+        const selectedContent = sectionContent.find((item) => item.type === specific);
+        const content = selectedContent?selectedContent.items:[];
 
     return (
     <> 
-       <HeaderCard title={title} ></HeaderCard>
+       <HeaderCard headerConfig={headerConfig} ></HeaderCard>
         <div id="Interests"  className="interests">
             <div className="types" >
-                {CONTENT.map((item) => (
+                {sectionContent.map((item) => (
                     
                     <Button 
                         key={item.type}
-                        handleclick={() => handleType(item.type)}
-                        classname={specific === item.type ? "highlight":"bt"}
+                        handlebtnClick={() => handleType(item.type)}
+                        btnClass={specific === item.type ? "highlight":"bt"}
                         style={{
                             borderRadius:"0px",
                         }}
@@ -52,8 +46,7 @@ function Interests({title,info}) {
 
 
             <div id="people" className="tab-content">
-
-                {contentd.map((item) => (
+                {content.map((item) => (
                     <Fragment
                         key={item.name}
                     >
@@ -64,7 +57,7 @@ function Interests({title,info}) {
                         <div className="company-info">
                             <h3 className="company-name">{item.name}</h3>
                             <p>{item.info}</p>
-                            <Button handleclick={handleFollow} classname="btn-following"><Icon classname={follow==='Following'?"fa-solid fa-check":"fa-solid fa-plus"}></Icon>{follow}</Button>
+                            <Button handlebtnClick={handleFollow} btnClass="btn-following"><Icon classname={follow==='Following'?"fa-solid fa-check":"fa-solid fa-plus"}></Icon>{follow}</Button>
                         </div>
                     </Fragment>
                 ))

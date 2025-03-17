@@ -10,15 +10,19 @@ import ActivitySection from "../../molecules/activity"
 import './Section.css'
 import { useModalContext } from "../sectionContainer/SectionContainer";
 import Interests from "../../molecules/interests";
-import sortByStartDate from "../../utils/sortData";
-
-
-function Section({ title, type, data }) {
-
+import sortByStartDate from "../../utils/sortbyStartDate";
+import { getSection } from "../../utils/sectionUtils";
+import { useSelector } from "react-redux";
+import localStorage from "redux-persist/lib/storage";
+function Section({ sectionTitle, sectionType }) {
     const [expand, setExpand] = useState(false);
     const extraClass = expand ? "card-expand" : "";
+    let sectionContent = useSelector(state => state.data.data[sectionType]);
     const { handleEditItem, editingItem } = useModalContext();
+    const headerConfig=getSection(sectionType).headerConfig;
     const { isModalOpen, handleAddBtnClick, handleModalClose, handleEditBtnClick } = useModal(handleEditItem);
+    if(sectionType=='experience'||sectionType=='education')
+     sectionContent=sortByStartDate(sectionContent);
     function toggleClick() {
         setExpand((prev) => !prev);
     }
@@ -28,54 +32,59 @@ function Section({ title, type, data }) {
 
     const sectionComponentsMapping = {
         interests: (
-            <section className={`${type}-card card`}>
-                <Interests title={title} info={data}></Interests>
+            <section className={`${sectionType}-card card`}>
+                <Interests headerConfig={headerConfig} sectionContent={sectionContent}></Interests>
             </section>
         ),
         activity: (
-            <section id="Activity" className={`${type}-card card`}>
-                <ActivitySection
-                    title={title}
-                    info={data}
-                    handleclick={handleAddBtnClick}
+            <section id="Activity" className={`${sectionType}-card card`}>
+                 <HeaderCard  headerConfig={headerConfig} >
+                <Button btnClass="resources profile-btn" handlebtnClick={handleAddBtnClick}>
+                    Create Post
+                </Button>
+            </HeaderCard>
+                <ActivitySection 
+                 headerConfig={headerConfig}
+                    info={sectionContent}
                 >
                 </ActivitySection>
             </section>
         ),
         analytics: (
-            <section className="${type}-card` card">
+            <section className="${sectionType}-card` card">
                 <AnalyticsSection
-                    info={data}
-                    title={title}
+                 headerConfig={headerConfig}
+                    info={sectionContent}
                 >
                 </AnalyticsSection>
             </section>
         ),
         profile: (
             < ProfileContent
-                info={data}
-                onEditBtnClick={() => handleEditBtnClick(data)}
+                info={sectionContent}
+               
+                onEditBtnClick={() => handleEditBtnClick(sectionContent)}
             >
             </ProfileContent>
 
         ),
         default: (
             <>
-                <section className={`card ${extraClass} ${type}-card`}>
-                    <HeaderCard classname='fa-solid fa-add' title={title} handleclick={handleAddBtnClick}></HeaderCard>
+                <section className={`card ${extraClass} ${sectionType}-card`}>
+                    <HeaderCard  headerConfig={headerConfig}  handlebtnClick={handleAddBtnClick}></HeaderCard>
                     < div
-                        id={title}
-                        className={`${type}-detail card-content`}
+                        id={sectionTitle}
+                        className={`${sectionType}-detail card-content`}
                     >
-                        {data && data.length > 0 && (
-                            data.map((item) => (
-                                <CardContent key={item.id} type={type} data={item} onEditBtnClick={() => handleEditBtnClick(item)} />
+                        {sectionContent && sectionContent.length > 0 && (
+                            sectionContent.map((item) => (
+                                <CardContent key={item.id} sectionType={sectionType} data={item} onEditBtnClick={() => handleEditBtnClick(item)} />
                             ))
                         ) }
                     </div>
 
                 </section>
-                <Button classname='toggle-btn' handleclick={toggleClick}>
+                <Button btnClass='toggle-btn' handlebtnClick={toggleClick}>
                     {expand ? "Show Less" : "Show More"}
                 </Button>
             </>
@@ -84,11 +93,11 @@ function Section({ title, type, data }) {
 
     return (
         <>
-            {sectionComponentsMapping[type] || sectionComponentsMapping.default}
+            {sectionComponentsMapping[sectionType] || sectionComponentsMapping.default}
             {isModalOpen && (
                 <Modal
                     onModalClose={handleModalClose}
-                    type={type}
+                    type={sectionType}
                     editingItem={editingItem}
                 >
                 </Modal>

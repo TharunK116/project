@@ -41,10 +41,11 @@ const FIELD_INFO = [
         type: "input",
         required: true,
         validator: (value) => {
+            console.log(value);
             if (!value) return "Contact Info is * required field.";
             const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
             const phonePattern = /^\d{10}$/;
-            if (!emailPattern.test(value.trim) && !phonePattern.test(value.trim))
+            if (emailPattern.test(value.trim) && phonePattern.test(value.trim))
                 return "Contact Info must be a valid email or phone number.";
             return "";
         },
@@ -76,6 +77,14 @@ const FIELD_INFO = [
         type: "input",
         required: true,
         validator: (value) => (!value ? "Position is * required field." : ""),
+    },
+    {
+        id:"PRONOUNS",
+        name: "Pronouns",
+        placeholder: "Pronoun",
+        type: "input",
+        required: true,
+        validator: (value) => (!value ? "Pronoun is * required field." : ""),
     },
   {
         id:"DESCRIPTION",

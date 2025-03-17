@@ -3,15 +3,13 @@ import HeaderCard from "../headerCard/Headercard";
 import Button from "../../atoms/buttton";
 import Icon from "../../atoms/icon";
 import './AnalystSection.css'
-function AnalyticsSection({ info }) {
+function AnalyticsSection({info,headerConfig}) {
     return (
         <>
-            <HeaderCard title={"Analytics"}>
-            
+            <HeaderCard  headerConfig={headerConfig}>
             </HeaderCard>
             <span className='analytics-sub'><i className="fa-solid fa-eye"></i>Private to you</span>   
             <div id="Analytics" className="analytics-detail ">
-
                 {info.map((info) => (
                     <div key={info.icon} className="analytics-item">
                         <div className="analytics-logo">

@@ -1,7 +1,7 @@
 
 import React, { createContext, useState } from "react";
 import Section from "../sections/Section";
-import { useUserData } from "../../hooks/useData";
+import { useUserData } from "../../hooks/useUserData";
 import { useContext } from "react";
 const ModalContext = createContext();
 export function useModalContext() {
@@ -22,11 +22,12 @@ function SectionContainer() {
 
                 <Section
                     key={section.title}
-                    title={section.title}
-                    type={section.type}
+                    sectionTitle={section.title}
+                    sectionType={section.type}
                     onInfoDelete={handleInfoDelete}
                     onInfoSubmit={handleFormSubmit}
-                    data={section.data}
+                    headerConfig={section.headerConfig}
+                   
                 />
             ))}
         </div>

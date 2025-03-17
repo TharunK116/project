@@ -1,9 +1,9 @@
 import React from "react";
 import 'font-awesome/css/font-awesome.min.css';
 
- function Icon ({classname}){
+ function Icon ({iconClass}){
     return (
-        <i className={classname}></i>
+        <i className={iconClass}></i>
     )
 }
 export default Icon;

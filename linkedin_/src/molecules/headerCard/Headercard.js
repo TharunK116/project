@@ -3,23 +3,21 @@ import Button from "../../atoms/buttton";
 import Title from "../../atoms/title";
 import Icon from "../../atoms/icon";
 import './HeaderCard.css'
-export default function HeaderCard({ headerClass,style,btnstyle,Tag, title, classname, handleclick, children}) {
-
+export default function HeaderCard({ headerConfig,headerClass,handlebtnClick, children}) {
+    console.log(headerConfig);
     return (
-        <div className={`header-card ${headerClass}`} style={style}>
-            <Title Tag={Tag}>{title}</Title>
-            {handleclick && <Button  style={btnstyle} handleclick={handleclick}>
-                {classname &&
+        <div className={`header-card ${headerClass}`}>
+            <Title Tag={headerConfig.tag}>{headerConfig.title}</Title>
+            {headerConfig.showButton&& <Button  handlebtnClick={handlebtnClick}>
                     <Icon
-                        classname={classname}
+                        iconClass={headerConfig.iconClass}
                     >
-                    </Icon>}
-                
+                    </Icon>
+            
             </Button>
             }
             {children}
         </div>
     )
-
 
 }

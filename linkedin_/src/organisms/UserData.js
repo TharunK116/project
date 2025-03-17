@@ -3,24 +3,24 @@ const UserData = {
 
     {
         id: "PRFOILE",
-        name: "Tharun Kumar",
-        pronouns: "He/Him",
-        description: "Final Year @IIIT Allahabad | Specialist @ Codeforces | Knight @ Leetcode",
+        NAME: "Tharun Kumar",
+        PRONOUNS: "He/Him",
+        DESCRIPTION: "Final Year @IIIT Allahabad | Specialist @ Codeforces | Knight @ Leetcode",
         location: "Prayagraj, Uttar Pradesh, India",
-        contact: "Contact info",
-        connections: "500+ connections"
+        CONTACT: "Contact info",
+        CONNECTIONS: "500+ connections"
     },
 
     education:
         [
             {
                 BRANCH: "Information Technology",
-             COLLEGE_NAME: "IIIT ALLAHABAD",
-           DEGREE: "Btech ",
-            END_DATE: "2025-05-31",
-           LOCATION: "Allahabad",
-            START_DATE: "2021-12-01",
-             id: 1741686752994
+                COLLEGE_NAME: "IIIT ALLAHABAD",
+                DEGREE: "Btech ",
+                END_DATE: "2025-05-31",
+                LOCATION: "Allahabad",
+                START_DATE: "2021-12-01",
+                id: 1741686752994
             }
         ]
 
@@ -28,13 +28,13 @@ const UserData = {
     experience:
         [
             {
-                COMPANY :"Tekion",
+                COMPANY: "Tekion",
                 DESCRIPTION: "c",
-                END_DATE:"2025-03-26",
+                END_DATE: "2025-03-26",
                 LOCATION: "BANGLORE",
-                POSITION:"Intern",
-                START_DATE:"2025-03-14",
-                id:1741686606850,
+                POSITION: "Intern",
+                START_DATE: "2025-03-14",
+                id: 1741686606850,
             }
         ]
     ,

@@ -1,9 +1,9 @@
 import React  from "react";
 
-  function Button ({style,classname,children,handleclick}){
+  function Button ({style,btnClass,children,handlebtnClick}){
 
     return (
-        <button className={classname} style={style} onClick={handleclick}>{children}</button>
+        <button className={btnClass} style={style} onClick={handlebtnClick}>{children}</button>
     )
 }
 export default Button;

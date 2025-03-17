@@ -4,8 +4,13 @@ export function useValidation(sectionConfig, fieldInfo) {
 
     function handleInputValidation(key, value) {
         const fieldConfig = fieldInfo.find((item)=>item.id===key);
+        console.log(key);
+        console.log(value);
+        console.log(fieldConfig);
         if (fieldConfig && fieldConfig.validator) {
             const errorMessage = fieldConfig.validator(value);
+            console.log(errorMessage);
+            
             setFormErrors((prevErrors) => ({
                 ...prevErrors,
                 [key]: errorMessage,

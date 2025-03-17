@@ -5,7 +5,7 @@ import Mainpage from './organisms/mainPage/index';
 
 function App() {
   return (
-    <div className='pp'>
+    <div >
       <Navbar />
       <Mainpage/>
     </div>

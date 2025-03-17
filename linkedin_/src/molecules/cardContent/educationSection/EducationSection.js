@@ -1,5 +1,5 @@
 import { IMGSRC } from "../Constants/cardContent.logo";
-import getYearDifference from "../../../utils/getdiff";
+import getYearDifference from "../../../utils/getYearDifference";
 function EducationSection({info}) {
     return (
         <>  <img

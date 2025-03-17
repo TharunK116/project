@@ -13,7 +13,7 @@ function NavbarRight(){
                 {item.imgSrc ? (
                     <img src={item.imgSrc} alt="profile_pic" className="menu-png" id="profile" />
                 ) : (
-                    <Icon classname={`fa-solid ${item.icon} icon`}></Icon>
+                    <Icon iconClass={`fa-solid ${item.icon} icon`}></Icon>
                 )}
                 <span>{item.label}</span>
             </a>

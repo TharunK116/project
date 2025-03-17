@@ -8,10 +8,10 @@ function Navbarleft(){
         <div className="nav-left">
         <div className="logo">
             <a href="index.html"> 
-                <Icon classname="fa-brands fa-linkedin"> </Icon></a>
+                <Icon iconClass="fa-brands fa-linkedin"> </Icon></a>
         </div>
         <div className="searchbar">
-            <Icon classname="fa-solid fa-magnifying-glass "></Icon>
+            <Icon iconClass="fa-solid fa-magnifying-glass "></Icon>
             <Input
                type="text"
                 name="Search"

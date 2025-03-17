@@ -7,30 +7,28 @@ import { getSection } from "../../utils/sectionUtils";
 import './Form.css'
 import { useModalContext } from "../../organisms/sectionContainer/SectionContainer";
 
-function Form({sectionType,onCloseBtnClick,onSubmitBtnClick,onFormInputChange,formData,formErrors,onDeleteBtnClick}) {
+function Form({...props}) {
+  const  {sectionType,onCloseBtnClick,onSubmitBtnClick,onFormInputChange,formData,formErrors,onDeleteBtnClick}=props;
     const {editingItem}=useModalContext();
     const sectionConfig = getSection(sectionType);
     const sectionFields = getFields(sectionConfig);
-
+    
     return (
         <div className="modal">
             <div className="modal-content">
                 <HeaderCard
-                 className="modal-header"
-                    Tag="h2"
-                    title={editingItem ? `Edit ${sectionType}:` : `Add ${sectionType}:`}
-                    handleclick={onCloseBtnClick}
-                    classname="fa-solid fa-close"
-                    btnstyle={
-                        {
-                            padding:"0px 0px",
-                            margin:"0px 0px"
+                    headerClass="modal-header"
+                    handlebtnClick={onCloseBtnClick}
+                    headerConfig={
+                        {   tag:"h2",
+                            showButton:"true",
+                            iconClass:"fa-solid fa-close",
+                            title:editingItem ? ` Edit ${sectionType}:` : ` Add ${sectionType}:`,
                         }
                     }
-                    style={{
-                       padding:"0px 0px",
-                        fontWeight: "bold"
-                    }} 
+                    
+                    
+                    iconClass="fa-solid fa-close"
                 />
                 <form className="modal-body" >
                     {sectionFields.map((field) => (
@@ -53,15 +51,15 @@ function Form({sectionType,onCloseBtnClick,onSubmitBtnClick,onFormInputChange,fo
                 </form>
                 <div>
                     <Button
-                        classname="btn form-btn"
-                        handleclick={() => onSubmitBtnClick()}
+                        btnClass="btn form-btn"
+                        handlebtnClick={() => onSubmitBtnClick()}
                         type="submit"
                     >
                         {editingItem ? "Update" : "Add"}
                     </Button>
                     {editingItem && <Button
-                        classname="btn"
-                        handleclick={() =>onDeleteBtnClick()}
+                        btnClass="btn"
+                        handlebtnClick={() =>onDeleteBtnClick()}
                         type="submit"
                     >
                         Delete
